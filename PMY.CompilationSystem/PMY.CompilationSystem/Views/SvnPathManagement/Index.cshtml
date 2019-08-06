@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BootStrap Table使用</title>
+    @*1、Jquery组件引用*@
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="~/Scripts/Jquery-1.10.2/jquery-1.10.2.js"></script>
+
+    @*2、bootstrap组件引用*@
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    @*3、bootstrap table组件以及中文包的引用*@
+    <script src="~/Scripts/bootstrap-table.min.js"></script>
+    <link href="~/Content/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-table-zh-CN.min.js"></script>
+
+    @*4、页面Js文件的引用*@
+    <script src="~/Scripts/SvnPathManagement/Index.js"></script>
+    <script src="~/Scripts/ExtentScripts/ConfirmBox.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script src="~/Scripts/ExtentScripts/FolderOrFileOperation.js"></script>
+
+    @*5、toastr提示组件的引用*@
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="panel-body" style="padding-bottom:0px;">
+
+        <div id="toolbar_svnfolders" class="btn-group">
+            <button id="btn_addsvnfolder" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_editsvnfolder" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button id="btn_deletesvnfolder" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+        </div>
+        <table id="tb_svnfolders"></table>
+    </div>
+
+    <!--新增/修改的模态框（Modal）-->
+    <div class="modal fade" id="svnfolderModal" tabindex="-1" role="dialog" aria-labelledby="svnfolderModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="svnfolderModalLabel">新增</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="hidden"  class="form-control" id="txt_Id" >
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_FolderName">名称</label>
+                        <input type="text" name="txt_FolderName" class="form-control" id="txt_FolderName" placeholder="名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_FolderPath">路径</label>
+                        <input type="text" name="txt_FolderPath" class="form-control" id="txt_FolderPath" placeholder="路径">
+                        <br />
+                        <button id="btn_selectfolder" type="button" class="btn btn-default" ><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>  选择文件夹路径</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_Sort">排序</label>
+                        <input type="text" name="txt_Sort" class="form-control" id="txt_Sort" placeholder="不填则默认排最前">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submitsvnfolder" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

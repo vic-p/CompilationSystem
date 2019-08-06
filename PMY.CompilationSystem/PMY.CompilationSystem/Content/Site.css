@@ -1,0 +1,27 @@
+﻿body {
+     font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+
+#main_header > .topbar {
+    height: 40px;
+    border-bottom: 1px solid #c0c0c0;
+    line-height: 40px;
+}
+
+    #main_header > .topbar > .container > .row > div {
+        height: 40px;
+        font: 12px;
+        color: #888;
+    }
+
+
+#main_header a {
+    color: #888;
+}
+
+    #main_header a:hover {
+        text-decoration: none;
+    }
+
+
+

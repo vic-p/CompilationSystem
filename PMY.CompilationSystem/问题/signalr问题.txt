@@ -1,0 +1,17 @@
+Signalr问题
+1、问题：Using a Hub instance not created by the HubPipeline is unsupported.
+   在服务端不能直接PMY.CompilationSystem.SignalR.CMDMessageHub cmdMessageHub = new SignalR.CMDMessageHub();cmdMessageHub.Send(result);这样使用signalr向所有客户端发送消息
+解决：var signalrContext = GlobalHost.ConnectionManager.GetHubContext<PMY.CompilationSystem.SignalR.CMDMessageHub>();
+      signalrContext.Clients.All.addNewMessageToPage(result);
+
+2、问题：在js上var cmdMessageHub = $.connection.CMDMessageHub;无法获取signalr类
+解决：在js里面引用后台Hub的类时，启用的是骆驼命名法，所以类名的首字母得小写.
+	var cmdMessageHub = $.connection.cMDMessageHub;
+
+3、一切正常，但是服务端向客户端发送消息，但是客户端接收不到
+解决：原因是没有打开连接
+  js加上$.connection.hub.start().done(function () { });
+
+参考连接：
+https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
+https://www.cnblogs.com/Czhipu/p/4829237.html

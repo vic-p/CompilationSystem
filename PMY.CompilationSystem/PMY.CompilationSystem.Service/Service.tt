@@ -1,0 +1,49 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Reflection" #>
+<#@ output extension=".cs" #>
+
+<#
+    string _filepath = @"PMY.CompilationSystem.Model\bin\Debug\PMY.CompilationSystem.Model.dll";
+    byte[] fileData= File.ReadAllBytes(_filepath);
+    Assembly _assembly = Assembly.Load(fileData);
+    //var _assembly = System.Reflection.Assembly.GetAssembly(typeof(PMY.CompilationSystem.Model));
+#>
+using PMY.CompilationSystem.IService;
+using PMY.CompilationSystem.Model.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PMY.CompilationSystem.Service
+{
+   
+<#
+// Emit Entity Types
+
+foreach (Type t in _assembly.GetTypes())
+{
+    if (t.FullName.Contains("PMY.CompilationSystem.Model.Models"))
+	{
+#>	
+	public partial class <#=t.Name#>Service :BaseService<<#=t.Name#>>, I<#=t.Name#>Service
+    {
+	    public <#=t.Name#>Service(DbContext context, IDBSession dbSession) 
+            : base(context, dbSession)
+        {
+
+        }     
+    }
+<#
+   }
+}
+#>
+	
+}

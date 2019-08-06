@@ -1,0 +1,5 @@
+问题一：EF修改数据后，读取还是修改前的数据，而数据库的数据是修改后的 解决：http://www.cnblogs.com/godbell/p/7360739.html
+是不是数据库上下文的缓存还保留原来的
+Attaching an entity of type 'PMY.CompilationSystem.Model.Models.SVNFolders' failed because another entity of the same type already has the same primary key value. This can happen when using the 'Attach' method or setting the state of an entity to 'Unchanged' or 'Modified' if any entities in the graph have conflicting key values. This may be because some entities are new and have not yet received database-generated key values. In this case use the 'Add' method or the 'Added' entity state to track the graph and then set the state of non-new entities to 'Unchanged' or 'Modified' as appropriate.
+
+问题二：查询时，查到的数据还是修改前的，AsNoTracking（）

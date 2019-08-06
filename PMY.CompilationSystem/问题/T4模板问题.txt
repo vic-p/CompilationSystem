@@ -1,0 +1,41 @@
+1、在codefist的情况下，如何应用T4模板快速生成重复的代码？
+	在T4模板中，我们在<#...#>里写动态后台代码，让T4模板生成我们需要的代码。但需要注意一下几点：
+	1、声明一个类时，如果前面没有<#import 类库#> 我们要用完整的类名，如：System.Reflection.Assembly assembly ；
+	2、需要生成什么后缀的文件，需要加上<#@ output extension=".cs" #>，.cs为后缀名；
+	3、codefist不像DBfist和ModelFist有.edmx文件，我们不能通过它来生成代码，但是我们可以通过反射dll来找到每个实体类的类型；
+	4、使用反射时注意，用LoadFile方法导入dll,其他像Load的方法T4运行时会报异常，找不到对应dll，如：System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFile(@"D:\桌面\PMY.MyBlog\PMY.MyBlog\PMY.MyBlog.Model\bin\Debug\PMY.MyBlog.Model.dll");
+**********************************************例子**********************************************************************************************************
+
+<#
+System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFile(@"D:\桌面\PMY.MyBlog\PMY.MyBlog\PMY.MyBlog.Model\bin\Debug\PMY.MyBlog.Model.dll");
+#>
+<#@ output extension=".cs" #>
+using PMY.MyBlog.Model.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PMY.MyBlog.IDAL
+{
+   
+<#
+// Emit Entity Types
+
+foreach (Type t in assembly.GetTypes())
+{
+    if (t.FullName.Contains("PMY.MyBlog.Model.Models"))
+	{
+#>	
+	public partial interface I<#=t.Name#>DAL :IBaseDAL<<#=t.Name#>>
+    {
+      
+    }
+<#
+   }
+}
+#>
+	
+}
+**********************************************************************************************************************************************************

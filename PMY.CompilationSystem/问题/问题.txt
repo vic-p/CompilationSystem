@@ -1,0 +1,4 @@
+1、可能因为IE浏览器（用IE11）不怎么支持jQuery-3.3.1（创建项目自带的），引用3.3.1版本的jQuery在IE上跑项目就报错说没定义jQuery，而在谷歌浏览器就没问题，因而改用低版本的jQuery-1.10.2
+2、bootstrap-closable-tab和bootstrap-table好像对Query-3.3.1也不怎么支持，老是出错，改用jQuery-1.10.2就没什么问题了，所以整个项目都改用jQuery-1.10.2
+3、多标签tab的js有两种，iframe和div版，div版在谷歌浏览器下跑，有bug不用,开启多个页签时，最先的页签点修改按钮，不能准确获取选择行数
+4、在vs2017(公司开发电脑)IISExpress调试编译正常，在自己笔记本电脑的vs2015的IISExpress调试编译功能，返回信息只有开头一部分。

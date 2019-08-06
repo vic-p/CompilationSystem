@@ -1,0 +1,6 @@
+cmd发布web:
+ D:\Work_Market\SVN\NET\评标系统\蓝光\trunk\招标采购\Code\Server\DataRemotingServer\DataRemotingServer.csproj /t:ResolveReferences;Compile /p:configuration=Debug /p:platform="x86" /p:VisualStudioVersion=10.0 /t:_WPPCopyWebApplication /p:WebProjectOutputDir=E:\Truelore\BidFile\蓝光\Publish\ZBCGPBTool
+
+
+发布winform客户端
+ D:\Work_Market\SVN\NET\评标系统\蓝光\trunk\招标采购\Code\Client\Client.sln /t:Publish /p:configuration=Debug /p:platform="x86" /p:VisualStudioVersion=10.0

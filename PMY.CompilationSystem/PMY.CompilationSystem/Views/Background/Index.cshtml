@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "后台管理";
+}
+
+@section css{
+<style type="text/css">
+
+    .headLeft {
+        float: left;
+    }
+
+    .headRight {
+        padding-top: 40px;
+        padding-left: 340px;
+    }
+
+    .search {
+        margin-bottom: 10px;
+    }
+
+     .search .toolbar {
+     }
+</style>
+
+ }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <!--激活，作为标题-->
+                    <a href="#" class="list-group-item active ">
+                        系统菜单
+                    </a>
+                    <a href="#" onclick="addTab(1, '用户管理', '/UserManagement/Index', true)" class="list-group-item">用户管理</a>
+                    <a href="#" onclick="addTab(2,'文件路径管理','/SvnPathManagement/Index',true)" class="list-group-item">SVN文件路径管理</a>
+                    <a href="#" onclick="addTab(3, '项目分类管理', '/ProjectClassManagement/Index', true)" class="list-group-item">项目分类管理</a>
+                    <a href="#" onclick="addTab(4, '项目管理', '/ProjectManagement/Index', true)" class="list-group-item">项目管理</a>
+                    <a href="#" class="list-group-item">退出后台</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <ul class="nav nav-tabs" role="tablist"></ul>
+                <div class="tab-content" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@section scripts{   
+    <script src="~/Scripts/bootstrap-closable-tab.js"></script>
+    @*<script src="~/Scripts/closable-tab-div.js"></script>*@<!--有bug不用,开启多个页签时，最先的页签点修改按钮，不能准确获取选择行数-->
+    <script>
+        function addTab(id,name,url,closable) {
+            var item = {
+                'id': id, 'name': name, 'url': url, 'closable': closable };
+            closableTab.addTab(item);
+        }
+    </script>
+ }

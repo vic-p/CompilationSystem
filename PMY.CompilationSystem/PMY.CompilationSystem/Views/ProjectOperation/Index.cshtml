@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "项目操作";
+}
+
+@section css{
+    <style>
+        #CMDMessage {
+            padding: 10px
+        }
+
+       #CMDMessage li:nth-of-type(odd) {
+           margin-left: 0px;
+           font-size: 10px;
+           background: #ddd;
+       }
+
+       #CMDMessage li:nth-of-type(even) {
+           margin-left: 0px;
+           font-size: 10px;
+       }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 hidden-sm hidden-xs">
+            <div style="border-bottom:1px solid #ddd; color: #337ab7">
+                <h4>实时信息：</h4>
+            </div>
+            <div class="pre-scrollable" style="max-height: 500px;overflow:auto">
+                <ul id="CMDMessage"></ul>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
+
+            <label for="txt_ProjectClass">选择项目分类：</label>
+            <select name="txt_ProjectClass" class="form-control" onchange="selectOnchange()" id="txt_ProjectClass" placeholder="项目分类"></select>
+
+            <div id="toolbar_project" class="btn-group">
+                <button id="btn_projectCompily" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span> 编译
+                </button>
+
+                <button id="btn_projectCompilyAndPubllish" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span> 编译并发布
+                </button>
+
+                <button id="btn_folderOpen" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> 打开文件夹
+                </button>
+
+                <button id="btn_projectOpen" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> VS打开项目
+                </button>
+            </div>
+
+            <table id="tb_projects"></table>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/ProjectOperation/Index.js"></script>
+    <script src="~/Scripts/ExtentScripts/FolderOrFileOperation.js"></script>
+}
+
